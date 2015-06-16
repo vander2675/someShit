@@ -19,7 +19,6 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 	private List<IWissensstreiter> drawableWissensstreiter = new ArrayList<>();
 	
 	public UseCaseZugDurchfuehren() {
-		countDicedInARow = 0; // unschön!!!! 
 	}
 	
 	@Override
@@ -35,7 +34,9 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 			
 			if(entry.getValue() == null && numberDiced != 6) {
 				drawable = false;
-			} 
+			} else if (entry.getValue() == null && IAPIFactory.factory.getSpielbrett().getStartFieldByPlayer(currentPlayer).getWissensstreiter().size() > 0) {
+				drawable = false;
+			}
 			
 			else if(entry.getValue() != null) {
 				for (IWissensstreiter ws : entry.getValue().getWissensstreiter()) {
@@ -50,7 +51,7 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 		}
 		if (drawableWissensstreiter.size() > 0) {
 			gameModel.setState(GameState.DICED_DRAWABLE);
-		} else if (countDicedInARow < 2) {
+		} else if (countDicedInARow < 3) {
 			gameModel.setState(GameState.DICED_NOT_DRAWABLE_THROWABLE);
 		} else {
 			gameModel.setState(GameState.DICED_NOT_DRAWABLE_NOT_THROWABLE);
@@ -85,8 +86,7 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 	@Override
 	public void clickEndTurn() {
 		
-		IAPIFactory.factory.getGameModel().setState(GameState.END_TURN_NORMAL);
-		countDicedInARow = 0;
+		IAPIFactory.factory.getGameModel().setState(GameState.NEW_TURN);
 	}
 
 	@Override
@@ -97,5 +97,10 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 	@Override
 	public int getNumberDiced() {
 		return numberDiced;
+	}
+
+	@Override
+	public void resetCountDicedInARow() {
+		countDicedInARow = 0;
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import javafx.scene.paint.Paint;
 import application.api.IPlayer;
 import application.api.IPlayers;
+import application.api.IWissensstreiter;
 import application.logic.IAPIFactory;
 import application.useCaseNewGame.NewGameInstance;
 
@@ -44,15 +45,10 @@ public class Players implements IPlayers{
 		if(currentPlayerNumber == 3) {
 			nextPlayerNumber = 0;
 		} else {
-			nextPlayerNumber = currentPlayerNumber++;
+			nextPlayerNumber = currentPlayerNumber + 1;
 		}
 		
-		for (IPlayer player : players) {
-			if(player.getPlayerNumber() == nextPlayerNumber) {
-				return player;
-			}
-		}
-		return null;
+		return players.get(nextPlayerNumber);
 	}
 
 	@Override
@@ -68,21 +64,33 @@ public class Players implements IPlayers{
 	@Override
 	public List<IPlayer> getPlayerOrderByCurrentPlayer(IPlayer current) {
 		LinkedList<IPlayer> result = new LinkedList<>();
-//		result.add(current);
+		result.add(current);
 		int currentIndex = current.getPlayerNumber();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			currentIndex = getNextPlayerIndexWithoutOverflow(currentIndex);
-			result.add(players.get(getNextPlayerIndexWithoutOverflow(currentIndex)));
+			result.add(players.get(currentIndex));
 		}
 		return result;
 	}
 	
 	private int getNextPlayerIndexWithoutOverflow(int current) {
-		if(current == 3) {
-			return 0;
-		}else {
-			current++;
+		current++;
+		
+		if(current == 4) {
+			current = 0;
 		}
+		
 		return current;
+	}
+
+	@Override
+	public int getCountOfWissensstreiterInHomeBase(IPlayer player) {
+		int result = 0;
+		for (IWissensstreiter ws : player.getAllPlayerWissensstreiter().getWissenstreiter()) {
+			if(IAPIFactory.factory.getSpielbrett().getFieldOfWissensstreiter(ws) == null) {
+				result++;
+			}
+		}
+		return result;
 	}
 }

@@ -22,7 +22,7 @@ public class UseCaseWissenTesten implements IUseCaseWissenTesten {
 	public void chooseCategory(ICategory category) {
 		isOponentTurn = true;
 		this.choosenCategory = category;
-		choosenQuestion = choosenCategory.getQuestions().getQuestions().get((int) (Math.random() * choosenCategory.getQuestions().count()));
+		choosenQuestion = choosenCategory.getQuestions().getQuestions().get((int)Math.ceil((Math.random() * choosenCategory.getQuestions().count())));
 		IAPIFactory.factory.getGameModel().setState(GameState.SHOW_QUESTION);
 	}
 

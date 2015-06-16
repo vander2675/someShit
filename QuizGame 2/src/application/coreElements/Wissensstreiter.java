@@ -21,12 +21,16 @@ public class Wissensstreiter implements IWissensstreiter {
 	@Override
 	public void performDraw(int toDraw) {
 		ISpielbrett spielbrett = IAPIFactory.factory.getSpielbrett();
-		spielbrett.perfomDraw(toDraw, this);
+		if(spielbrett.getFieldOfWissensstreiter(this) == null) {
+			spielbrett.drawToStartFieldFromHomeBase(this);
+		} else {
+			spielbrett.perfomDraw(toDraw, this);			
+		}
 	}
 
 	@Override
 	public void drawFromHomebase() {
-		
+		ISpielbrett spielbrett = IAPIFactory.factory.getSpielbrett();
 	}
 
 	@Override

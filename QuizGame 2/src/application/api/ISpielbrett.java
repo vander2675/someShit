@@ -12,4 +12,5 @@ public interface ISpielbrett extends ICollection {
 	IField getOccupiedField();
 	void drawToStartFieldFromOccupiedField(IPlayer player);
 	void drawToHomeBaseFromOccupiedField(IPlayer player);
+	void drawToStartFieldFromHomeBase(IWissensstreiter ws);
 }

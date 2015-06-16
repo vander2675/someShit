@@ -8,4 +8,5 @@ public interface IUseCaseZugDurchfuehren {
 	void clickEndTurn();
 	List<IWissensstreiter> getDrawableWissensstreiter();
 	int getNumberDiced();
+	void resetCountDicedInARow();
 }

@@ -22,6 +22,7 @@ public class Spielbrett implements ISpielbrett {
 	
 	@Override
 	public void newGame(NewGameInstance instance) {
+		fields.clear();
 		for (int i = 0; i < 48; i++) {
 			fields.add(IAPIFactory.factory.makeField());
 		}
@@ -74,7 +75,9 @@ public class Spielbrett implements ISpielbrett {
 	@Override
 	public IField perfomDraw(int toDraw, IWissensstreiter ws) {
 		IField nextField = fields.get(drawWithoutOverflow(toDraw, fields.indexOf(getFieldOfWissensstreiter(ws))));
-		fields.get(fields.indexOf(getFieldOfWissensstreiter(ws))).removeWissensstreiter(ws);
+		if (getFieldOfWissensstreiter(ws) != null) {
+			fields.get(fields.indexOf(getFieldOfWissensstreiter(ws))).removeWissensstreiter(ws);
+		}
 		if (nextField.getWissensstreiter().size() > 0) {
 			occupiedField = nextField;
 		}
@@ -95,7 +98,8 @@ public class Spielbrett implements ISpielbrett {
 	}
 
 	private int getStartIndexByPlayer(IPlayer player) {
-		return (this.fields.size() / 4) * player.getPlayerNumber();
+		int result = (this.fields.size() / 4) * player.getPlayerNumber();
+		return result;
 	}
 	
 	@Override
@@ -129,5 +133,10 @@ public class Spielbrett implements ISpielbrett {
 			}
 		}
 		occupiedField.removeWissensstreiter(playerWs);
+	}
+
+	@Override
+	public void drawToStartFieldFromHomeBase(IWissensstreiter ws) {
+		getStartFieldByPlayer(IAPIFactory.factory.getGameModel().getCurrentPlayer()).addWissensstreiter(ws);
 	}
 }

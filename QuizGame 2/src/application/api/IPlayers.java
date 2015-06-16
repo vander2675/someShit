@@ -11,4 +11,5 @@ public interface IPlayers extends ICollection {
 	String getNameForPlayerNo(int playerNo);
 	Paint getColorForPlayerNo(int playerNo);
 	List<IPlayer> getPlayerOrderByCurrentPlayer(IPlayer current);
+	int getCountOfWissensstreiterInHomeBase(IPlayer player);
 }

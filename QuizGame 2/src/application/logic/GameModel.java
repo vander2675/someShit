@@ -66,8 +66,14 @@ public class GameModel implements IGameModel {
 			setCurrentPlayerToNextPlayer();
 		} else if (state == GameState.NEW_GAME) {
 			this.state = GameState.NEW_TURN;
+		} else if (state == GameState.DICED_NOT_DRAWABLE_NOT_THROWABLE) {
+			useCaseZugDurchfuehren.clickEndTurn();
+			setCurrentPlayerToNextPlayer();
+		} else if (state == GameState.DRAWN_NOT_OCCUPIED) {
+			useCaseZugDurchfuehren.clickEndTurn();
+			setCurrentPlayerToNextPlayer();
 		}
-		currentPlayer = IAPIFactory.factory.getPlayers().getNextPlayer(currentPlayer);
+		useCaseZugDurchfuehren.resetCountDicedInARow();
 		updateObservers();
 	}
 
@@ -163,5 +169,11 @@ public class GameModel implements IGameModel {
 	@Override
 	public IPlayer getCurrentOponent() {
 		return currentOponent;
+	}
+
+	@Override
+	public void resetCountDicedInARow() {
+		// TODO Auto-generated method stub
+		
 	}
 }

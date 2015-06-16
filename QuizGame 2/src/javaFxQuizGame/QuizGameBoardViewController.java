@@ -54,6 +54,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -602,13 +603,22 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 		case 0:
 			wiImage = new Image(getClass().getResourceAsStream("resources/Assets/Wissensstreiter/white.png"));
 			break;
+			
+		case 1:
+			wiImage = new Image(getClass().getResourceAsStream("resources/Assets/Wissensstreiter/red.png"));
+			break;
+			
+		case 2:
+			wiImage = new Image(getClass().getResourceAsStream("resources/Assets/Wissensstreiter/purple.png"));
+			break;
 
 		default:
-			wiImage = new Image(getClass().getResourceAsStream("resources/Assets/Wissensstreiter/red.png"));
+			wiImage = new Image(getClass().getResourceAsStream("resources/Assets/Wissensstreiter/green.png"));
 			break;
 		}
 		
 		ImageView wissensstreiter = addImageToNode(field, wiImage, true);
+		wissensstreiterz.add(wissensstreiter);
 		return wissensstreiter;
 	}
 	
@@ -638,6 +648,17 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 			if (fieldColumn != null) {
 				GridPane.setColumnIndex(sp, fieldColumn.intValue());
 			}
+			parentPane.getChildren().set(indexOfField, sp);
+			// re-add field to the new stackpane
+			sp.getChildren().add(node);
+		}
+		
+		if (parent instanceof VBox) {
+			VBox parentPane = (VBox)node.getParent();
+			
+			// exchange field with new stackpane in parent
+			StackPane sp = new StackPane();
+			int indexOfField = parentPane.getChildren().indexOf(node);
 			parentPane.getChildren().set(indexOfField, sp);
 			// re-add field to the new stackpane
 			sp.getChildren().add(node);
@@ -704,6 +725,11 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 		highlightNodes(nodes);
 	}
 	
+	private void highlightRectangles(List<Rectangle> rectangles) {
+		List<Node> nodes = new ArrayList<>(rectangles);
+		highlightNodes(nodes);
+	}
+	
 	private void removeHighlightFromAllNodes() {
 		if (highlightedNodes != null) {
 			ArrayList<Node> highlightedNodesCopy = new ArrayList<>(highlightedNodes);
@@ -739,6 +765,16 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 		timeline.play();
 		
 		node.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+	}
+	
+	private void emphasizeGlowEffectFromNode(Node node, Color color, Color emphasizeColor) {
+		for (Node otherNode : highlightedNodes) {
+			((DropShadow)otherNode.getEffect()).setColor(color);
+		}
+		
+		DropShadow borderGlow = (DropShadow)node.getEffect();
+		
+		borderGlow.setColor(emphasizeColor);
 	}
 	
 	private void removeGlowEffectFromNode(Node node) {
@@ -963,7 +999,12 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 		int indexOfField = fields.indexOf(field);
 		System.out.println("field["+indexOfField+"] clicked!");
 		
-		field.setFill(Color.RED);
+		IWissensstreiter ws = IAPIFactory.factory.getSpielbrett().getFieldAtIndex(indexOfField).getWissensstreiter().get(0);
+		if(ws != null && ws.getOwner().equals(gameModel.getCurrentPlayer())) {
+			gameModel.chooseWS(ws);
+		}
+		
+//		field.setFill(Color.RED);
 //		highlightNodes(Arrays.asList(new Circle[] {field}));
 	}
 	
@@ -972,15 +1013,30 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 		int indexOfField = categories.indexOf(categoryField);
 		System.out.println("categoryField["+indexOfField+"] clicked!");
 		
-		categoryField.setFill(Color.RED);
+		if (categoryField.getEffect() == null) {
+			return;
+		}
+		
+		emphasizeGlowEffectFromNode(categoryField, Color.web("#00FC00"), Color.RED);
+		selectedCategoryNo = this.categories.indexOf(categoryField);
+		
+		setMainButtonToPromptForAcceptCategoryDecision(selectedCategoryNo);
 	}
 	
 	private void handleClickOnBaseField(Circle baseField, int playerNo)
 	{
 		int indexOfField = this.getBaseFields(playerNo).indexOf(baseField);
 		System.out.println("baseField["+indexOfField+"] of Player["+playerNo+"] clicked!");
+		int numberOfWSInHomeBase = IAPIFactory.factory.getPlayers().getCountOfWissensstreiterInHomeBase(gameModel.getCurrentPlayer());
+		if (indexOfField <= numberOfWSInHomeBase) {
+			for (IWissensstreiter ws : gameModel.getCurrentPlayer().getAllPlayerWissensstreiter().getWissenstreiter()) {
+				if(IAPIFactory.factory.getSpielbrett().getFieldOfWissensstreiter(ws) == null) {
+					gameModel.chooseWS(ws);
+				}
+			}
+		}
 		
-		baseField.setFill(Color.RED);
+//		baseField.setFill(Color.RED);
 	}
 	
 	private void handleClickOnWAField(Circle waField, int playerNo, int categoryNo)
@@ -1008,6 +1064,7 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 			break;
 
 		case PROMPT_FOR_ACCEPT_CATEGORY:
+			System.out.println("Chose category no:" + selectedCategoryNo);
 			ICategory selectedCategory = IAPIFactory.factory.getCategories().getCategories().get(selectedCategoryNo);
 			gameModel.chooseCategory(selectedCategory);
 			break;
@@ -1115,6 +1172,18 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 				addWissensstreiterToField(this.fields.get(i), playerNo);
 			}
 		}
+		ISpielbrett gameBoard = IAPIFactory.factory.getSpielbrett();
+		for (IPlayer player : IAPIFactory.factory.getPlayers().getPlayers()) {
+			int basefieldIndex = 0;
+			for (IWissensstreiter ws : player.getAllPlayerWissensstreiter().getWissenstreiter()) {
+				if(gameBoard.getFieldOfWissensstreiter(ws) == null) {
+					addWissensstreiterToField(this.getBaseFields(player.getPlayerNumber()).get(basefieldIndex), player.getPlayerNumber());
+					basefieldIndex++;
+				}
+			}
+		}
+		
+		
 	}
 	
 	// ********************************************************
@@ -1282,6 +1351,8 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 		System.out.println("Will present viewController: " + viewController);
 		
 		if (viewController instanceof QuizGameQuestionViewController) {
+			// Frage Parameter holen und hier setzen
+			ICategory selectedCategory = IAPIFactory.factory.getCategories().getCategories().get(selectedCategoryNo);
 			((QuizGameQuestionViewController) viewController).setupWithParameters("Kategorie I", "Vander", "Frage1:?!", Arrays.asList(new String[] {"Antwort1", "Antwort2", "Antwort3", "Antwort4"}), 0);
 		}
 		
@@ -1367,6 +1438,8 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 	public void update(GameState info) {
 		System.out.println("Update called with :" + info);
 		
+		removeHighlightFromAllNodes();
+		
 		switch (info) {
 		case NEW_GAME:
 			IPlayers players = APIFactory.factory.getPlayers();
@@ -1406,7 +1479,12 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 				IField field = gameBoard.getFieldOfWissensstreiter(wissensstreiter);
 				
 				if (field == null) {
-					highlightCircles(getBaseFields(gameModel.getCurrentPlayer().getPlayerNumber()));
+					System.out.println("playerno:"+gameModel.getCurrentPlayer().getPlayerNumber());
+					for (int i = 0; i < IAPIFactory.factory.getPlayers().getCountOfWissensstreiterInHomeBase(IAPIFactory.factory.getGameModel().getCurrentPlayer()); i++) {
+						List<Circle> circles = new ArrayList<Circle>();
+						circles.add(getBaseFields(gameModel.getCurrentPlayer().getPlayerNumber()).get(i));
+						highlightCircles(circles);						
+					}
 				}
 				else {
 					int fieldIndex = gameBoard.getFields().indexOf(field);
@@ -1419,7 +1497,33 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 			break;
 			
 		case DICED_NOT_DRAWABLE_NOT_THROWABLE:
+			setMainButtonToPromptForNextTurn();
+			break;
 			
+		case DRAWN_NOT_OCCUPIED:
+			updateGameBoard();
+			setMainButtonToPromptForNextTurn();
+			break;
+			
+		case DRAWN_OCCUPIED:
+			highlightRectangles(this.categories);
+			break;
+			
+		case SHOW_QUESTION:
+			overlayWithNodeFromFXML("resources/FXML/Frage.fxml");
+			
+			break;
+			
+		case END_TURN_TEST:
+			
+//			break;
+			
+		case END_TURN_NORMAL:
+			updateGameBoard();
+			break;
+			
+		case END_GAME:
+		
 			break;
 
 		default:
