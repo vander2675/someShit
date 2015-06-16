@@ -9,7 +9,6 @@ public class Dice implements IDice {
 
 	@Override
 	public int throwDice() {
-//		return (int)Math.ceil(Math.random() * 6);
-		return 6;
+		return (int)Math.ceil(Math.random() * 6);
 	}
 }
