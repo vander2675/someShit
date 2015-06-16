@@ -1,7 +1,8 @@
 package application.coreElements;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 
 import application.api.IAllPlayerWissensstreiter;
 import application.api.IField;
@@ -11,12 +12,15 @@ import application.logic.IAPIFactory;
 import application.useCaseNewGame.NewGameInstance;
 public class AllPlayerWissensstreiter implements IAllPlayerWissensstreiter {
 
-	HashSet<IWissensstreiter> allPlayerWissensstreiter;
+	List<IWissensstreiter> allPlayerWissensstreiter;
 	IPlayer owner;
 	
 	public AllPlayerWissensstreiter(IPlayer player){
-		allPlayerWissensstreiter = new HashSet<IWissensstreiter>();
+		allPlayerWissensstreiter = new ArrayList<IWissensstreiter>();
 		this.owner = player;
+		for(int i = 0; i < 3; i++) {
+			allPlayerWissensstreiter.add(IAPIFactory.factory.makeWissensstreiter(owner));
+		}
 	}
 	
 	@Override
@@ -25,7 +29,7 @@ public class AllPlayerWissensstreiter implements IAllPlayerWissensstreiter {
 	}
 
 	@Override
-	public HashSet<IWissensstreiter> getWissenstreiter() {
+	public List<IWissensstreiter> getWissenstreiter() {
 		return allPlayerWissensstreiter;
 	}
 	

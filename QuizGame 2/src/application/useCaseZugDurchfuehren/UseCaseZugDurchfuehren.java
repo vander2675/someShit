@@ -43,9 +43,9 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 						drawable = false;
 					}
 				}
-				if (drawable) {
-					drawableWissensstreiter.add(entry.getKey());
-				}
+			}
+			if (drawable) {
+				drawableWissensstreiter.add(entry.getKey());
 			}
 		}
 		if (drawableWissensstreiter.size() > 0) {

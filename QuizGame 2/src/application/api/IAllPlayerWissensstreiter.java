@@ -1,9 +1,9 @@
 package application.api;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 
 public interface IAllPlayerWissensstreiter extends ICollection {
-	HashSet<IWissensstreiter> getWissenstreiter();
+	List<IWissensstreiter> getWissenstreiter();
 	HashMap<IWissensstreiter,IField> getDrawnWissensstreiter(int toDraw);
 }
