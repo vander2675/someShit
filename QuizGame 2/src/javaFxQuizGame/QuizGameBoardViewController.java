@@ -596,7 +596,6 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 	}
 	
 	private ImageView addWissensstreiterToField(Circle field, int playerNo) {
-		ImageView wissensstreiter = new ImageView();
 		Image wiImage = null;
 		
 		switch (playerNo) {
@@ -609,7 +608,7 @@ public class QuizGameBoardViewController implements Initializable, IOverlayable,
 			break;
 		}
 		
-		wissensstreiter.setImage(wiImage);
+		ImageView wissensstreiter = addImageToNode(field, wiImage, true);
 		return wissensstreiter;
 	}
 	
