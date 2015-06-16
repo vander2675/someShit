@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="1c7gviap94970-2n6liw">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:application.api.IGameModel">
+			<property name="bounds" value="175,195,161,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IGameModel:ISubject&lt;GameState&gt;">
+				<property name="sourceAnchor" value="260,200"/>
+				<property name="targetAnchor" value="260,121"/>
+			</reference>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IGameModel:IUseCaseWissenTesten">
+				<property name="sourceAnchor" value="220,200"/>
+				<property name="targetAnchor" value="161,144"/>
+			</reference>
+			<reference referencedUin="jdt:l_gnt:src:application.logic.api.IGameModel:Subject&lt;Info&gt;">
+				<property name="sourceAnchor" value="260,200"/>
+				<property name="targetAnchor" value="260,121"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IGameModel:IUseCaseZugDurchfuehren">
+				<property name="sourceAnchor" value="220,200"/>
+				<property name="targetAnchor" value="168,144"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.logic.api.Model:e_class">
+				<property name="bounds" value="55,-12,50,25"/>
+			</reference>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IGameModel:IUseCaseNewGame">
+				<property name="sourceAnchor" value="341,253"/>
+				<property name="targetAnchor" value="657,253"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IUseCaseWissenTesten">
+			<property name="bounds" value="0,0,155,139"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IUseCaseZugDurchfuehren">
+			<property name="bounds" value="0,0,200,139"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IObserver">
+			<property name="bounds" value="515,24,96,83"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:e_tsig:src:application.api.IObserver:e_class">
+				<property name="bounds" value="56,-12,80,25"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.logic.api.Observer:e_class">
+				<property name="bounds" value="71,-12,50,25"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.ISubject">
+			<property name="bounds" value="135,15,241,101"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+			<reference referencedUin="jdt:e_tsig:src:application.logic.api.Subject:e_class">
+				<property name="bounds" value="216,-12,50,25"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.api.ISubject:e_class">
+				<property name="bounds" value="201,-12,80,25"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.ICategory">
+			<property name="bounds" value="299,382,149,94"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IQuestion">
+			<property name="bounds" value="86,158,154,109"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IPlayer">
+			<property name="bounds" value="414,-4,200,184"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.ICategories">
+			<property name="bounds" value="414,109,200,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.ICategories:ICollection">
+				<property name="sourceAnchor" value="419,120"/>
+				<property name="targetAnchor" value="261,102"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IQuestions">
+			<property name="bounds" value="414,208,200,126"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IQuestions:ICollection">
+				<property name="sourceAnchor" value="425,213"/>
+				<property name="targetAnchor" value="261,102"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:e_class:src:application.api.IQuestions.IWissenstandsanzeiger">
+				<property name="bounds" value="19,10,154,80"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IWissensstreiter">
+			<property name="bounds" value="132,340,130,94"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IDice">
+			<property name="bounds" value="39,104,95,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IPlayers">
+			<property name="bounds" value="652,-4,179,94"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IPlayers:ICollection">
+				<property name="sourceAnchor" value="657,48"/>
+				<property name="targetAnchor" value="261,48"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.ICollection">
+			<property name="bounds" value="138,-4,118,125"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.ISpielbrett">
+			<property name="bounds" value="294,95,108,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.ISpielbrett:ICollection">
+				<property name="sourceAnchor" value="299,113"/>
+				<property name="targetAnchor" value="261,102"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IField">
+			<property name="bounds" value="5,5,114,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IAllPlayerWissensstreiter">
+			<property name="bounds" value="652,109,200,94"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IAllPlayerWissensstreiter:ICollection">
+				<property name="sourceAnchor" value="657,120"/>
+				<property name="targetAnchor" value="261,102"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IUseCaseNewGame">
+			<property name="bounds" value="652,222,137,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IWissenstandsanzeiger">
+			<property name="bounds" value="275,-4,154,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IUseCaseEndGame">
+			<property name="bounds" value="652,321,131,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>

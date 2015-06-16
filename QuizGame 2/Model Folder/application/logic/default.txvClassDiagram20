@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhi9v7aj0e-6t0hsb">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:application.logic.GameModel">
+			<property name="bounds" value="235,275,200,333"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_dpn:src:application.logic.GameModel:lnkGameModel">
+				<property name="sourceAnchor" value="223,634"/>
+				<property name="targetAnchor" value="219,638"/>
+				<property name="bendpoints" value="252,634,252,667,219,667"/>
+				<property name="smooth_bendpoints" value="252,634,252,667,219,667"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.logic.Timer">
+			<property name="bounds" value="35,635,95,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.logic.APIFactory">
+			<property name="bounds" value="795,315,200,152"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.logic.APIFactory:IAPIFactory">
+				<property name="sourceAnchor" value="900,472"/>
+				<property name="targetAnchor" value="900,560"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.logic.APIFactory:gameModel">
+				<property name="sourceAnchor" value="800,388"/>
+				<property name="targetAnchor" value="440,388"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.logic.IAPIFactory">
+			<property name="bounds" value="795,555,200,140"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:application.logic.IAPIFactory:factory">
+				<property name="sourceAnchor" value="1000,696"/>
+				<property name="targetAnchor" value="996,700"/>
+				<property name="bendpoints" value="1029,696,1029,729,996,729"/>
+				<property name="smooth_bendpoints" value="1029,696,1029,729,996,729"/>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>

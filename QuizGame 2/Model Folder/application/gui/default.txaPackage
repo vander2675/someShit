@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<link uin="ieje0ri9v8ho2n-btr1b5">
+		<property name="$metaclass" value="Dependency20"/>
+		<property name="label" value="&lt;&lt;access&gt;&gt;"/>
+		<participant referencedUin="uml:package::src:application.gui" role="Client"></participant>
+		<participant referencedUin="uml:package::src:application.logic" role="Supplier"></participant>
+	</link>
+	<link uin="ieje0riapet02t-gyefk">
+		<property name="$metaclass" value="Dependency20"/>
+		<participant referencedUin="uml:package::src:application.gui" role="Client"></participant>
+		<participant referencedUin="uml:package::src:application.api" role="Supplier"></participant>
+	</link>
+</nodeSet>

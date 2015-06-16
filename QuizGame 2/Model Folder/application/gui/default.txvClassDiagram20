@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhi9v7acl0-8r5ryv">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:application.gui.Controller">
+			<property name="location_set_by_user" value="true"/>
+			<property name="bounds" value="375,15,178,91"/>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Controller:lnkModel">
+				<property name="sourceAnchor" value="326,104"/>
+				<property name="targetAnchor" value="262,295"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Controller:lnkView">
+				<property name="sourceAnchor" value="380,43"/>
+				<property name="targetAnchor" value="152,43"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.gui.Views">
+			<property name="location_set_by_user" value="true"/>
+			<property name="bounds" value="15,15,132,121"/>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Views:lnkController">
+				<property name="sourceAnchor" value="152,80"/>
+				<property name="targetAnchor" value="380,80"/>
+				<property name="bendpoints" value=""/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Views:lnkModel">
+				<property name="sourceAnchor" value="291,89"/>
+				<property name="targetAnchor" value="254,301"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.gui.IView">
+			<property name="bounds" value="15,155,80,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>

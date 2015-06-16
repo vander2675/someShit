@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhi9v8hxal5ozzql">
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<property name="$name" value="Class Diagram1"/>
+		<reference referencedUin="jdt:e_class:src:application.gui.Controller">
+			<property name="bounds" value="275,135,178,91"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Controller:lnkModel">
+				<property name="sourceAnchor" value="458,231"/>
+				<property name="targetAnchor" value="458,320"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Controller:lnkView">
+				<property name="sourceAnchor" value="458,155"/>
+				<property name="targetAnchor" value="640,155"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.logic.GameModel">
+			<property name="bounds" value="415,315,200,333"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.logic.GameModel:IGameModel">
+				<property name="sourceAnchor" value="620,405"/>
+				<property name="targetAnchor" value="873,204"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.logic.GameModel:lnkObserver">
+				<property name="sourceAnchor" value="420,387"/>
+				<property name="targetAnchor" value="169,163"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IGameModel">
+			<property name="bounds" value="855,75,182,124"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<reference referencedUin="jdt:l_gnt:src:application.api.IGameModel:ISubject&lt;GameState&gt;">
+				<property name="sourceAnchor" value="1042,121"/>
+				<property name="targetAnchor" value="1100,121"/>
+			</reference>
+			<reference referencedUin="jdt:l_gnt:src:application.logic.api.IGameModel:Subject&lt;Info&gt;">
+				<property name="sourceAnchor" value="1060,109"/>
+				<property name="targetAnchor" value="1100,109"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.gui.Views">
+			<property name="bounds" value="635,60,144,121"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Views:lnkController">
+				<property name="sourceAnchor" value="640,163"/>
+				<property name="targetAnchor" value="458,163"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.gui.Views:lnkModel">
+				<property name="sourceAnchor" value="678,186"/>
+				<property name="targetAnchor" value="606,320"/>
+			</reference>
+			<reference referencedUin="jdt:l_impl:src:application.gui.Views:IObserver&lt;GameState&gt;">
+				<property name="sourceAnchor" value="640,100"/>
+				<property name="targetAnchor" value="206,100"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.IObserver">
+			<property name="bounds" value="35,75,166,83"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<reference referencedUin="jdt:e_tsig:src:application.api.Observer:e_class">
+				<property name="bounds" value="122,-12,80,25"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.api.IObserver:e_class">
+				<property name="bounds" value="126,-12,80,25"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.logic.api.Observer:e_class">
+				<property name="bounds" value="166,-12,50,25"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.api.ISubject">
+			<property name="bounds" value="1095,60,156,98"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<reference referencedUin="jdt:e_tsig:src:application.logic.api.Subject:e_class">
+				<property name="bounds" value="156,-12,50,25"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.api.Subject:e_class">
+				<property name="bounds" value="112,-12,80,25"/>
+			</reference>
+			<reference referencedUin="jdt:e_tsig:src:application.api.ISubject:e_class">
+				<property name="bounds" value="116,-12,80,25"/>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>

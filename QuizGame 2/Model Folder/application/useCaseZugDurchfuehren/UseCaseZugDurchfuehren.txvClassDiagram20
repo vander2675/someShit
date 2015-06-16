@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="3fay0iap93suidho3yc">
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<property name="$name" value="UseCaseZugDurchfuehren"/>
+	</view>
+</nodeSet>

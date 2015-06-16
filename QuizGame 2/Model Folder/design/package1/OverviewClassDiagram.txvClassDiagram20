@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="504pri9v7ilfko558zw">
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<property name="$name" value="OverviewClassDiagram"/>
+		<reference referencedUin="design:view:::V1hexuhi9v7acl0-8r5ryv">
+			<property name="bounds" value="255,16,281,108"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="design:view:::V1hexuhi9v7aj0e-6t0hsb">
+			<property name="bounds" value="215,195,341,141"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="design:link:::ieje0ri9v8ho2n-btr1b5">
+			<property name="sourceAnchor" value="388,129"/>
+			<property name="targetAnchor" value="388,200"/>
+			<property name="bendpoints" value=""/>
+			<reference referencedUin="label:label:design:link:::ieje0ri9v8ho2n-btr1b5">
+				<property name="bounds" value="391,155,70,19"/>
+			</reference>
+		</reference>
+		<reference referencedUin="design:view:::1c7gviap94970-2n6liw">
+			<property name="bounds" value="635,215,169,235"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+		</reference>
+		<reference referencedUin="design:link:::ieje0riap999vxaarpfn">
+			<property name="sourceAnchor" value="561,280"/>
+			<property name="targetAnchor" value="640,280"/>
+			<reference referencedUin="label:label:design:link:::ieje0riap999vxaarpfn">
+				<property name="bounds" value="564,258,72,19"/>
+			</reference>
+		</reference>
+		<reference referencedUin="design:link:::ieje0riapet02t-gyefk">
+			<property name="sourceAnchor" value="475,129"/>
+			<property name="targetAnchor" value="640,244"/>
+		</reference>
+	</view>
+</nodeSet>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V-b8dyjiiagqjk8dc5fr1j">
+		<property name="$metaclass" value="ActivityDiagram20"/>
+		<property name="$name" value="throws=0"/>
+		<reference referencedUin="design:node:::-46k66riagqk2gv-5ktkqx">
+			<property name="bounds" value="115,75,300,150"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$shortcutReference" value="true"/>
+		</reference>
+	</view>
+</nodeSet>

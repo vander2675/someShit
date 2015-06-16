@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhiatkz195l449vj">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:application.useCaseNewGame.UseCaseNewGame">
+			<reference referencedUin="jdt:l_impl:src:application.useCaseNewGame.UseCaseNewGame:IUseCaseNewGame">
+				<property name="sourceAnchor" value="742,423"/>
+				<property name="targetAnchor" value="965,474"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<link uin="e0cl1iapemr1uld5rf3">
+		<property name="$metaclass" value="Dependency20"/>
+		<property name="label" value="&lt;&lt;import&gt;&gt;"/>
+		<participant referencedUin="uml:package::src:application.useCaseZugDurchfuehren" role="Client"></participant>
+		<participant referencedUin="uml:package::src:application.coreElements" role="Supplier"></participant>
+	</link>
+	<link uin="ieje0riaperiei-q6evyd">
+		<property name="$metaclass" value="Dependency20"/>
+		<participant referencedUin="uml:package::src:application.useCaseZugDurchfuehren" role="Client"></participant>
+		<participant referencedUin="uml:package::src:application.state" role="Supplier"></participant>
+	</link>
+</nodeSet>

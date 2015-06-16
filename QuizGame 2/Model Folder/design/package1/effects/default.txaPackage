@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="-46k66riagpwacvyomnlo">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="decidePlayerOrder()"/>
+	</node>
+	<node uin="-46k66riagqj61h-ajqeqi">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="throws++"/>
+	</node>
+	<node uin="-46k66riagqk2gv-5ktkqx">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="throws=0"/>
+	</node>
+	<node uin="-46k66riagqkxal-s2agai">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="performOnResult()"/>
+	</node>
+	<node uin="-46k66riagqle1s-vz7ppv">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="getNextPlayer()"/>
+	</node>
+	<node uin="-46k66riagqlub7b3dwb7">
+		<property name="$metaclass" value="Activity20"/>
+		<property name="$name" value="newPlayer()"/>
+	</node>
+</nodeSet>

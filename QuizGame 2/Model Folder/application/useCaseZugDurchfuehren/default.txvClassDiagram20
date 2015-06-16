@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="84ebmiap93sui-ouvuyv">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<property name="__options" value="option.nlayout.recursive=true"/>
+		<reference referencedUin="design:view:::3fay0iap93suidho3yc">
+			<property name="bounds" value="535,275,187,60"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.useCaseZugDurchfuehren.UseCaseZugDurchfuehren">
+			<property name="bounds" value="295,115,174,106"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.logic.useCaseZugDurchfuehren.UseCaseZugDurchfuehren:IUseCaseZugDurchfuehren">
+				<property name="sourceAnchor" value="300,154"/>
+				<property name="targetAnchor" value="238,154"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_impl:src:application.useCaseZugDurchfuehren.UseCaseZugDurchfuehren:IUseCaseZugDurchfuehren">
+				<property name="sourceAnchor" value="300,133"/>
+				<property name="targetAnchor" value="183,90"/>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>

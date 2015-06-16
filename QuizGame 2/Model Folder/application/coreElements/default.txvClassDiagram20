@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="j6iw3iap93voc3dhuh4">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Field">
+			<property name="bounds" value="0,0,93,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+			<reference referencedUin="jdt:l_impl:src:application.coreElements.Field:IField">
+				<property name="sourceAnchor" value="455,627"/>
+				<property name="targetAnchor" value="731,188"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Player">
+			<property name="bounds" value="0,0,163,168"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.coreElements.Player:IPlayer">
+				<property name="sourceAnchor" value="484,764"/>
+				<property name="targetAnchor" value="733,285"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Players">
+			<property name="bounds" value="0,0,159,107"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Spielbrett">
+			<property name="bounds" value="0,0,95,107"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:application.coreElements.Spielbrett:fields">
+				<property name="sourceAnchor" value="50,58"/>
+				<property name="targetAnchor" value="50,58"/>
+			</reference>
+			<reference referencedUin="jdt:l_impl:src:application.coreElements.Spielbrett:ISpielbrett">
+				<property name="sourceAnchor" value="486,673"/>
+				<property name="targetAnchor" value="750,252"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Categories">
+			<property name="bounds" value="0,0,194,122"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:application.coreElements.Categories:categories">
+				<property name="sourceAnchor" value="103,66"/>
+				<property name="targetAnchor" value="103,66"/>
+				<reference referencedUin="label:supplierCardinality:jdt:l_ast:src:application.coreElements.Categories:categories">
+					<property name="bounds" value="106,113,21,19"/>
+				</reference>
+				<reference referencedUin="label:clientCardinality:jdt:l_ast:src:application.coreElements.Categories:categories">
+					<property name="bounds" value="106,113,10,19"/>
+				</reference>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Category">
+			<property name="bounds" value="0,0,137,137"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.coreElements.Category:ICategory">
+				<property name="sourceAnchor" value="452,686"/>
+				<property name="targetAnchor" value="736,280"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.coreElements.Category:questions">
+				<property name="sourceAnchor" value="70,142"/>
+				<property name="targetAnchor" value="70,146"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Wissenstandsanzeiger">
+			<property name="bounds" value="0,0,150,122"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.coreElements.Wissenstandsanzeiger:IWissenstandsanzeiger">
+				<property name="sourceAnchor" value="510,749"/>
+				<property name="targetAnchor" value="955,220"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.coreElements.Wissenstandsanzeiger:categories">
+				<property name="sourceAnchor" value="81,65"/>
+				<property name="targetAnchor" value="81,65"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Dice">
+			<property name="bounds" value="0,0,95,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Question">
+			<property name="bounds" value="112,-4,165,198"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.coreElements.Questions">
+			<property name="bounds" value="23,141,191,168"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:application.coreElements.Questions:category">
+				<property name="sourceAnchor" value="62,146"/>
+				<property name="targetAnchor" value="62,142"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:application.coreElements.Questions:questions">
+				<property name="sourceAnchor" value="168,314"/>
+				<property name="targetAnchor" value="168,199"/>
+				<reference referencedUin="label:clientCardinality:jdt:l_ast:src:application.coreElements.Questions:questions">
+					<property name="bounds" value="221,295,10,19"/>
+				</reference>
+				<reference referencedUin="label:supplierCardinality:jdt:l_ast:src:application.coreElements.Questions:questions">
+					<property name="bounds" value="221,200,21,19"/>
+				</reference>
+			</reference>
+		</reference>
+	</view>
+</nodeSet>

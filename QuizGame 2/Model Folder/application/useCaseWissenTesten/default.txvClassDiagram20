@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="i19noiap93neml0v37z">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="jdt:e_class:src:application.useCaseWissenTesten.UseCaseWissenTesten">
+			<property name="bounds" value="75,115,187,302"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.logic.useCaseWissenTesten.UseCaseWissenTesten:IUseCaseWissenTesten">
+				<property name="sourceAnchor" value="157,200"/>
+				<property name="targetAnchor" value="157,320"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.useCaseWissenTesten.WissenTestenInstance">
+			<property name="bounds" value="224,-4,200,107"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:application.useCaseWissenTesten.WissenTestenInstance:IWissenTestenInstance">
+				<property name="sourceAnchor" value="229,59"/>
+				<property name="targetAnchor" value="210,59"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.useCaseWissenTesten.IWissenTestenInstance">
+			<property name="bounds" value="5,5,200,109"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>
