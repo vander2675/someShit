@@ -98,6 +98,7 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     
 	private void initReferenceCollections() {
 		// start with the answer rects
+		gameModel = IAPIFactory.factory.getGameModel();
 		Rectangle[] answerRectsArray = { answer0Rect, answer1Rect, answer2Rect, answer3Rect };
 		this.answerRects = Arrays.asList(answerRectsArray);
 		

@@ -122,7 +122,7 @@ public class Spielbrett implements ISpielbrett {
 	public void drawToStartFieldFromOccupiedField(IWissensstreiter ws) {
 		IWissenTestenInstance instance = IAPIFactory.factory.getWissenTestenInstance();
 		if (getStartFieldByPlayer(ws.getOwner()).getWissensstreiter().size() > 0 &&
-				!instance.getPlayerWS().equals(getStartFieldByPlayer(instance.getCurrentPlayer()).getWissensstreiter().get(0))) {
+				instance.getPlayerWS().equals(getStartFieldByPlayer(instance.getCurrentPlayer()).getWissensstreiter().get(0))) {
 			drawToHomeBaseFromOccupiedField(ws);
 		} else {
 			getFieldOfWissensstreiter(ws).removeWissensstreiter(ws);
