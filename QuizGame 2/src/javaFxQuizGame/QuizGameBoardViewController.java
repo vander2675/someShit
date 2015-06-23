@@ -1480,7 +1480,7 @@ public class QuizGameBoardViewController implements Initializable,
 							selectedCategory.getName(),
 							IAPIFactory.factory.getWissenTestenInstance().getCurrentPlayer().getPlayerName(),
 							selectedQuestion.getQuestion(),
-							Arrays.asList(selectedQuestion.getAnswers()),0);
+							Arrays.asList(selectedQuestion.getAnswers()));
 		}
 
 		if (viewController instanceof QuizGameWinnerScreenViewController) {

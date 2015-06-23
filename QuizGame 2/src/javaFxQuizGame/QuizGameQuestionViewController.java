@@ -25,7 +25,7 @@ import application.api.IObserver;
 import application.logic.IAPIFactory;
 import application.state.GameState;
 
-public class QuizGameQuestionViewController implements Initializable, IPresentable, IObserver<GameState> {
+public class QuizGameQuestionViewController implements Initializable, IPresentable{
 
     @FXML
     private Rectangle answer1Rect;
@@ -90,8 +90,6 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	gameModel = IAPIFactory.factory.getGameModel();
-    	gameModel.attach(this);
     	initReferenceCollections();
     	initClickHandlers();
     	
@@ -119,7 +117,7 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     }
     
 	public void setupWithParameters(String category, String questionGoesTo,
-			String question, List<String> answers, int indexOfRightAnswer) {
+			String question, List<String> answers) {
 		categoryLabel.setText(category);
 		questionToLabel.setText("Frage an: "+questionGoesTo);
 		questionLabel.setText(question);
@@ -127,8 +125,6 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
 		for (String answer : answers) {
 			answerLabels.get(answers.indexOf(answer)).setText(answer);
 		}
-		
-		this.indexOfRightAnswer = indexOfRightAnswer;
 	}
     
     private Timer setupTimer() {
@@ -142,10 +138,13 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     }
     
     private void handleClickOnAnswerRect(Rectangle answerRect) {
-		boolean result = IAPIFactory.factory.getGameModel().getQuestion().isCorrectAnswer(gameModel.getQuestion().getAnswers()[answerRects.indexOf(answerRect)]);
-		System.out.println(result);
-		gameModel.chooseAnswer(gameModel.getQuestion().getAnswers()[answerRects.indexOf(answerRect)]);
+    	int answerRectIndex = answerRects.indexOf(answerRect);
+    	String answerText = answerLabels.get(answerRectIndex).getText();
+    	
+		boolean result = IAPIFactory.factory.getGameModel().getQuestion().isCorrectAnswer(answerText);
 		answerRect.setFill((result) ? Color.LIGHTGREEN : Color.RED);
+		
+		gameModel.chooseAnswer(answerText);
 
 		setupEndState();
 	}
@@ -176,7 +175,6 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     	
     	// update progress bar
     	double remainingProgress = (double)remainingTimeInMillis / (double)kAnswerTimeInMillis;
-//    	System.out.println("progress: "+remainingProgress*100.0 + "%");
     	timeUpProgressBar.setProgress(remainingProgress);
     	
     	if (remainingProgress<=0.0) {
@@ -192,12 +190,12 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     		
     		timeUpLabel.setText("Zeit abgelaufen!");
     		IAPIFactory.factory.getGameModel().timeUp();
-//    		timeUpLabel.setTextFill(Color.RED);
-//    		
-//    		// set all answer rects to red
-//    		for (Rectangle rectangle : answerRects) {
-//				rectangle.setFill(Color.RED);
-//			}
+    		timeUpLabel.setTextFill(Color.RED);
+    		
+    		// set all answer rects to red
+    		for (Rectangle rectangle : answerRects) {
+				rectangle.setFill(Color.RED);
+			}
     		
     		setupEndState();
     	}
@@ -215,14 +213,5 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
 
 	@Override
 	public boolean shouldPresenterViewYieldUserInteraction() { return true; }
-
-	@Override
-	public void update(GameState info) {
-
-		switch(info) {
-		case SHOW_ANSWER:
-			
-		}
-	}
 
 }
