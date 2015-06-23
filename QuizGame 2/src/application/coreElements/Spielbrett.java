@@ -9,6 +9,7 @@ import application.api.ISpielbrett;
 import application.api.IWissensstreiter;
 import application.logic.IAPIFactory;
 import application.useCaseNewGame.NewGameInstance;
+import application.useCaseWissenTesten.IWissenTestenInstance;
 
 
 public class Spielbrett implements ISpielbrett {
@@ -119,7 +120,9 @@ public class Spielbrett implements ISpielbrett {
 
 	@Override
 	public void drawToStartFieldFromOccupiedField(IWissensstreiter ws) {
-		if (getStartFieldByPlayer(ws.getOwner()).getWissensstreiter().size() > 0) {
+		IWissenTestenInstance instance = IAPIFactory.factory.getWissenTestenInstance();
+		if (getStartFieldByPlayer(ws.getOwner()).getWissensstreiter().size() > 0 &&
+				!instance.getPlayerWS().equals(getStartFieldByPlayer(instance.getCurrentPlayer()).getWissensstreiter().get(0))) {
 			drawToHomeBaseFromOccupiedField(ws);
 		} else {
 			getFieldOfWissensstreiter(ws).removeWissensstreiter(ws);

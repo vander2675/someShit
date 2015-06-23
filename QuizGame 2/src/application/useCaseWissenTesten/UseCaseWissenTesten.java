@@ -63,7 +63,13 @@ public class UseCaseWissenTesten implements IUseCaseWissenTesten {
 
 	@Override
 	public void timeUp() {
-		IAPIFactory.factory.getWissenTestenInstance().getCurrentPlayer().getWissenstandsanzeiger().dekrementACategory(choosenCategory);
+		IWissenTestenInstance instance = IAPIFactory.factory.getWissenTestenInstance();
+		ISpielbrett board = IAPIFactory.factory.getSpielbrett();
+		
+		instance.getCurrentPlayer().getWissenstandsanzeiger().dekrementACategory(choosenCategory);
+		board.drawToHomeBaseFromOccupiedField(instance.getPlayerWS());
+		instance.changeWissenTestenInstance();
+		
 		IAPIFactory.factory.getGameModel().setState(GameState.WAIT_FOR_DONE);
 	}
 

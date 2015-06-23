@@ -1,15 +1,17 @@
 package application.logic;
 
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import application.api.IAllPlayerWissensstreiter;
 import application.api.ICategories;
+import application.api.ICategory;
 import application.api.IDice;
 import application.api.IField;
 import application.api.IGameModel;
 import application.api.IPlayer;
 import application.api.IPlayers;
+import application.api.IQuestion;
+import application.api.IQuestions;
 import application.api.ISpielbrett;
 import application.api.IUseCaseNewGame;
 import application.api.IUseCaseWissenTesten;
@@ -22,6 +24,8 @@ import application.coreElements.Dice;
 import application.coreElements.Field;
 import application.coreElements.Player;
 import application.coreElements.Players;
+import application.coreElements.Question;
+import application.coreElements.Questions;
 import application.coreElements.Spielbrett;
 import application.coreElements.Wissensstreiter;
 import application.coreElements.Wissenstandsanzeiger;
@@ -83,6 +87,13 @@ public class APIFactory implements IAPIFactory {
 	
 	@Override
 	public IWissenTestenInstance getWissenTestenInstance() { return getWissenTestenInstanceImpl(); }
+	
+	@Override
+	public IQuestions getQuestions(ICategory category) { return makeQuestionsImpl(category); }
+	
+	@Override
+	public IQuestion makeQuestion(String question, String trueAnswer,
+			String[] falseAnswer) { return makeQuestionImpl(question, trueAnswer, falseAnswer); }
 	
 	// private initializers
 	
@@ -171,4 +182,12 @@ public class APIFactory implements IAPIFactory {
 		}
 		return instance;
 	}
+	
+	private IQuestions makeQuestionsImpl(ICategory category) {
+		return new Questions(category);
+	}
+
+	private IQuestion makeQuestionImpl(String question, String trueAnswer, String[] falseAnswer) {
+		return new Question(question, trueAnswer, falseAnswer);
+	}	
 }

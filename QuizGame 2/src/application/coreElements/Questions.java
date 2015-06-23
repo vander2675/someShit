@@ -3,28 +3,30 @@ package application.coreElements;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.api.ICategory;
+import application.api.IQuestion;
 import application.api.IQuestions;
 import application.persistence.QuestionsDAO;
 import application.useCaseNewGame.NewGameInstance;
 
 public class Questions implements IQuestions {
-	private List<Question> questions;
-	private Category category;
+	private List<IQuestion> questions;
+	private ICategory category;
 	
-	public Questions(Category category) {
+	public Questions(ICategory category2) {
 		QuestionsDAO dao = new QuestionsDAO();
-		questions = new ArrayList<Question>();
-		questions = dao.loadQuestions(category);
-		this.category = category;
+		questions = new ArrayList<IQuestion>();
+		questions = dao.loadQuestions(category2);
+		this.category = category2;
 	}
 	
 	@Override
-	public List<Question> getQuestions() {
+	public List<IQuestion> getQuestions() {
 		return questions;
 	}
 
 	@Override
-	public Category getCategroy() {
+	public ICategory getCategroy() {
 		return this.category;
 	}
 

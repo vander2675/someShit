@@ -1,24 +1,23 @@
 package application.persistence;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
-import application.coreElements.Category;
-import application.coreElements.Question;
+import application.api.ICategory;
+import application.api.IQuestion;
+import application.logic.IAPIFactory;
 
 public class QuestionsDAO {
 	
-	public List<Question> loadQuestions(Category category){
+	public List<IQuestion> loadQuestions(ICategory category){
 		Scanner scanner = IFileLoader.fileLoader.loadCSVtoScanner("resources/" + category.getName() + ".csv");
-		List<Question> result = new ArrayList<Question>();
+		List<IQuestion> result = new ArrayList<IQuestion>();
 		while(scanner.hasNext()) {
-			String question = scanner.next();
-			String rightAnswer = scanner.next();
-			String[] falseAnswers = {scanner.next(), scanner.next(), scanner.next()};
-			result.add(new Question(question, rightAnswer, falseAnswers));
+			String question = scanner.next().trim();
+			String rightAnswer = scanner.next().trim();
+			String[] falseAnswers = {scanner.next().trim(), scanner.next().trim(), scanner.next().trim()};
+			result.add(IAPIFactory.factory.makeQuestion(question, rightAnswer, falseAnswers));
 		}
 		return result;
 	}
