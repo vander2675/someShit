@@ -1485,7 +1485,7 @@ public class QuizGameBoardViewController implements Initializable,
 
 		if (viewController instanceof QuizGameWinnerScreenViewController) {
 			((QuizGameWinnerScreenViewController) viewController)
-					.setupWithParameters("FappelDieFap");
+					.setupWithParameters(IAPIFactory.factory.getWissenTestenInstance().getCurrentPlayer().getPlayerName());
 		}
 	}
 
@@ -1665,7 +1665,9 @@ public class QuizGameBoardViewController implements Initializable,
 			break;
 
 		case END_GAME:
-
+			updateGameBoard();
+			dismissAllOverlays();
+			overlayWithNodeFromFXML("resources/FXML/winnerScreen.fxml");
 			break;
 
 		default:
