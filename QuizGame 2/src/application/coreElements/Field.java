@@ -1,6 +1,6 @@
 package application.coreElements;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import application.api.IField;
@@ -11,7 +11,7 @@ public class Field implements IField {
 	List<IWissensstreiter> ws;
 	
 	public Field() {
-		this.ws = new ArrayList<IWissensstreiter>();
+		this.ws = new LinkedList<IWissensstreiter>();
 	}
 
 	@Override

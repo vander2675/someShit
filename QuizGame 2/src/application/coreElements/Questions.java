@@ -14,7 +14,7 @@ public class Questions implements IQuestions {
 	public Questions(Category category) {
 		QuestionsDAO dao = new QuestionsDAO();
 		questions = new ArrayList<Question>();
-		dao.loadQuestions(category);
+		questions = dao.loadQuestions(category);
 		this.category = category;
 	}
 	

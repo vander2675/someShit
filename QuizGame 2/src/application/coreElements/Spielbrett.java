@@ -14,7 +14,6 @@ import application.useCaseNewGame.NewGameInstance;
 public class Spielbrett implements ISpielbrett {
 
 	List<IField> fields;
-	IField occupiedField;
 	
 	public Spielbrett() {
 		fields = new ArrayList<IField>();
@@ -35,6 +34,7 @@ public class Spielbrett implements ISpielbrett {
 
 	@Override
 	public List<IField> getFields() {
+		cleanUp();
 		return fields;
 	}
 
@@ -78,9 +78,6 @@ public class Spielbrett implements ISpielbrett {
 		if (getFieldOfWissensstreiter(ws) != null) {
 			fields.get(fields.indexOf(getFieldOfWissensstreiter(ws))).removeWissensstreiter(ws);
 		}
-		if (nextField.getWissensstreiter().size() > 0) {
-			occupiedField = nextField;
-		}
 		nextField.addWissensstreiter(ws);
 		return nextField;
 	}
@@ -89,8 +86,10 @@ public class Spielbrett implements ISpielbrett {
 	public IField getFieldOfWissensstreiter(IWissensstreiter ws) {
 		for (IField field : fields) {
 			for (IWissensstreiter wsIndex : field.getWissensstreiter()) {
-				if(wsIndex.equals(ws)) {
-					return field;
+				if (wsIndex != null) {
+					if(wsIndex.equals(ws)) {
+						return field;
+					}
 				}
 			}
 		}
@@ -109,34 +108,47 @@ public class Spielbrett implements ISpielbrett {
 
 	@Override
 	public IField getOccupiedField() {
-		return occupiedField;
+		cleanUp();
+		for (IField iField : fields) {
+			if (iField.getWissensstreiter().size() > 1) {
+				return iField;
+			}
+		}
+		return null;
 	}
 
 	@Override
-	public void drawToStartFieldFromOccupiedField(IPlayer player) {
-		IWissensstreiter playerWs = null;
-		for (IWissensstreiter ws : occupiedField.getWissensstreiter()) {
-			if (ws.getOwner().equals(player)) {
-				playerWs = ws;
-			}
+	public void drawToStartFieldFromOccupiedField(IWissensstreiter ws) {
+		if (getStartFieldByPlayer(ws.getOwner()).getWissensstreiter().size() > 0) {
+			drawToHomeBaseFromOccupiedField(ws);
+		} else {
+			getFieldOfWissensstreiter(ws).removeWissensstreiter(ws);
+			getStartFieldByPlayer(ws.getOwner()).addWissensstreiter(ws);	
 		}
-		occupiedField.removeWissensstreiter(playerWs);
-		getStartFieldByPlayer(player).addWissensstreiter(playerWs);
 	}
 
 	@Override
-	public void drawToHomeBaseFromOccupiedField(IPlayer player) {
-		IWissensstreiter playerWs = null;
-		for (IWissensstreiter ws : occupiedField.getWissensstreiter()) {
-			if (ws.getOwner().equals(player)) {
-				playerWs = ws;
-			}
-		}
-		occupiedField.removeWissensstreiter(playerWs);
+	public void drawToHomeBaseFromOccupiedField(IWissensstreiter ws) {
+		getFieldOfWissensstreiter(ws).removeWissensstreiter(ws);
 	}
 
 	@Override
 	public void drawToStartFieldFromHomeBase(IWissensstreiter ws) {
 		getStartFieldByPlayer(IAPIFactory.factory.getGameModel().getCurrentPlayer()).addWissensstreiter(ws);
+	}
+		
+	private void cleanUp() {
+		for (IField iField : fields) {
+			List<IWissensstreiter> ws = new ArrayList<IWissensstreiter>();
+			for (IWissensstreiter iWissensstreiter : iField.getWissensstreiter()) {
+				if (iWissensstreiter != null) {
+					ws.add(iWissensstreiter);
+				}
+			}
+			iField.getWissensstreiter().clear();
+			for (IWissensstreiter iWissensstreiter : ws) {
+				iField.addWissensstreiter(iWissensstreiter);
+			}
+		}
 	}
 }

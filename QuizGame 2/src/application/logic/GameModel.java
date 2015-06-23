@@ -2,7 +2,9 @@ package application.logic;
 import java.util.LinkedList;
 import java.util.List;
 
+import javaFxQuizGame.Main;
 import application.api.*;
+import application.coreElements.Spielbrett;
 import application.state.*;
 import application.useCaseNewGame.NewGameInstance;
 
@@ -34,7 +36,9 @@ public class GameModel implements IGameModel {
 
 	@Override
 	public void attach(IObserver<GameState> obs) {
-		this.lnkObserver.add(obs);
+		if(!lnkObserver.contains(obs)) {
+			this.lnkObserver.add(obs);			
+		}
 	}
 
 	@Override
@@ -120,8 +124,8 @@ public class GameModel implements IGameModel {
 	}
 	
 	private void updateObservers() {
-		for (IObserver<GameState> item : this.lnkObserver) {
-			item.update(state);
+		for (int i = 0; i < this.lnkObserver.size(); i++) {
+			this.lnkObserver.get(i).update(state);
 		}
 	}
 
@@ -175,5 +179,25 @@ public class GameModel implements IGameModel {
 	public void resetCountDicedInARow() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void makeDrawOccupied() {
+		if(Main.DEBUG) {
+			IWissensstreiter ws = this.getCurrentPlayer().getAllPlayerWissensstreiter().getWissenstreiter().get(0);
+			for (IField field : IAPIFactory.factory.getSpielbrett().getFields()) {
+				if (field.getWissensstreiter().size() > 0 && !field.getWissensstreiter().get(0).getOwner().equals(currentPlayer)) {
+					field.addWissensstreiter(ws);
+					setState(GameState.DRAWN_OCCUPIED);
+					IAPIFactory.factory.getWissenTestenInstance().setUp(currentPlayer, 
+							field.getWissensstreiter().get(0).getOwner(), ws, field.getWissensstreiter().get(0));
+				}
+			}
+		}
+		updateObservers();
+	}
+
+	@Override
+	public ICategory getChoosenCategory() {
+		return useCaseWissenTesten.getChoosenCategory();
 	}
 }

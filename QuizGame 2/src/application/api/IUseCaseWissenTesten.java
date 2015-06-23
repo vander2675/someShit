@@ -8,4 +8,5 @@ public interface IUseCaseWissenTesten {
 	void clickEndTurn();
 	boolean isAnswerCorrect();
 	IQuestion getQuestion();
+	ICategory getChoosenCategory();
 }

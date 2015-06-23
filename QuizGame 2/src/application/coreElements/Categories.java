@@ -9,8 +9,6 @@ import application.api.ICategory;
 import application.persistence.CategoriesDAO;
 import application.useCaseNewGame.NewGameInstance;
 
-
-
 public class Categories implements ICategories {
 
 	private List<ICategory> categories = new ArrayList<>();
@@ -29,8 +27,7 @@ public class Categories implements ICategories {
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return categories.size();
 	}
 
 	@Override

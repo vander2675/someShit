@@ -22,39 +22,48 @@ public class UseCaseWissenTesten implements IUseCaseWissenTesten {
 	public void chooseCategory(ICategory category) {
 		isOponentTurn = true;
 		this.choosenCategory = category;
-		choosenQuestion = choosenCategory.getQuestions().getQuestions().get((int)Math.ceil((Math.random() * choosenCategory.getQuestions().count())));
+		choosenQuestion = choosenCategory.getQuestions().getQuestions().get((int)Math.ceil((Math.random() * choosenCategory.getQuestions().count()) - 1));
 		IAPIFactory.factory.getGameModel().setState(GameState.SHOW_QUESTION);
 	}
 
 	@Override
 	public void chooseAnswer(String answer) {
+		IPlayer currentPlayer = IAPIFactory.factory.getWissenTestenInstance().getCurrentPlayer();
+		IWissenTestenInstance instance = IAPIFactory.factory.getWissenTestenInstance();
+
 		if(choosenQuestion.isCorrectAnswer(answer)) {
 			answerCorrect = true;
+			instance.setPlayerAnswer(true);
 			isOponentTurn = false;
-			IAPIFactory.factory.getGameModel().getCurrentPlayer().getWissenstandsanzeiger().inkrementACategory(choosenCategory);
+			currentPlayer.getWissenstandsanzeiger().inkrementACategory(choosenCategory);
 		} else {
 			answerCorrect = false;
-			IAPIFactory.factory.getGameModel().getCurrentPlayer().getWissenstandsanzeiger().dekrementACategory(choosenCategory);
-			IWissenTestenInstance instance = IAPIFactory.factory.getWissenTestenInstance();
-			instance.changeWissenTestenInstance(instance.getCurrentOponent(), instance.getCurrentPlayer());
+			currentPlayer.getWissenstandsanzeiger().dekrementACategory(choosenCategory);
+			instance.setPlayerAnswer(false);
+			instance.changeWissenTestenInstance();
+			choosenQuestion = choosenCategory.getQuestions().getQuestions().get((int)Math.ceil((Math.random() * choosenCategory.getQuestions().count()) - 1));
 		}
 		perfomDrawAfterAnswer();
-		IAPIFactory.factory.getGameModel().setState(GameState.SHOW_ANSWER);
+		if(instance.getCurrentPlayer().getWissenstandsanzeiger().isGameOver()) {
+			IAPIFactory.factory.getGameModel().setState(GameState.END_GAME);
+		} else {
+			IAPIFactory.factory.getGameModel().setState(GameState.SHOW_ANSWER);			
+		}
 	}
 
 	private void perfomDrawAfterAnswer() {
-		IPlayer currentPlayer = IAPIFactory.factory.getGameModel().getCurrentPlayer();
-		ISpielbrett spielbrett = IAPIFactory.factory.getSpielbrett();
-		if(answerCorrect && spielbrett.getStartFieldByPlayer(currentPlayer).getWissensstreiter().size() > 0) {
-			spielbrett.drawToHomeBaseFromOccupiedField(currentPlayer);
+		ISpielbrett board = IAPIFactory.factory.getSpielbrett();
+		IWissenTestenInstance instance = IAPIFactory.factory.getWissenTestenInstance();
+		if (instance.getPlayerAnswer()) {
+			board.drawToStartFieldFromOccupiedField(instance.getPlayerWS());
 		} else {
-			spielbrett.drawToStartFieldFromOccupiedField(currentPlayer);
+			board.drawToHomeBaseFromOccupiedField(instance.getPlayerWS());
 		}
 	}
 
 	@Override
 	public void timeUp() {
-		IAPIFactory.factory.getGameModel().getCurrentPlayer().getWissenstandsanzeiger().dekrementACategory(choosenCategory);
+		IAPIFactory.factory.getWissenTestenInstance().getCurrentPlayer().getWissenstandsanzeiger().dekrementACategory(choosenCategory);
 		IAPIFactory.factory.getGameModel().setState(GameState.WAIT_FOR_DONE);
 	}
 
@@ -82,5 +91,10 @@ public class UseCaseWissenTesten implements IUseCaseWissenTesten {
 	@Override
 	public IQuestion getQuestion() {
 		return choosenQuestion;
+	}
+
+	@Override
+	public ICategory getChoosenCategory() {
+		return choosenCategory;
 	}
 }

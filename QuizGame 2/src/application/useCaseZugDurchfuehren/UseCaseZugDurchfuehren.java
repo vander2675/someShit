@@ -9,6 +9,7 @@ import application.api.IGameModel;
 import application.api.IPlayer;
 import application.api.IUseCaseZugDurchfuehren;
 import application.api.IWissensstreiter;
+import application.coreElements.Spielbrett;
 import application.logic.IAPIFactory;
 import application.state.GameState;
 
@@ -64,20 +65,29 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 		if(drawableWissensstreiter.contains(ws)) {
 			ws.performDraw(numberDiced);			
 		}
-		IField fieldAfterDraw = IAPIFactory.factory.getSpielbrett().getFieldOfWissensstreiter(ws);
 		boolean occupied = false;
-		if(fieldAfterDraw.getWissensstreiter().size() > 1) {
+		if(IAPIFactory.factory.getSpielbrett().getOccupiedField() != null) {
 				occupied = true;
 		}
 		
 		if(occupied) {
 			gameModel.setState(GameState.DRAWN_OCCUPIED);
-			for (IWissensstreiter iWissensstreiter : fieldAfterDraw.getWissensstreiter()) {
-				if(!iWissensstreiter.getOwner().equals(IAPIFactory.factory.getGameModel().getCurrentPlayer())) {
-					IAPIFactory.factory.getWissenTestenInstance().changeWissenTestenInstance(
-							IAPIFactory.factory.getGameModel().getCurrentPlayer(), iWissensstreiter.getOwner());
+			IWissensstreiter playerWS = null;
+			IWissensstreiter oponentWS = null;
+			IPlayer player = null;
+			IPlayer oponent = null;
+			for (IWissensstreiter iWissensstreiter : IAPIFactory.factory.getSpielbrett().getOccupiedField().getWissensstreiter()) {
+				if (iWissensstreiter != null) {
+					if(!iWissensstreiter.getOwner().equals(IAPIFactory.factory.getGameModel().getCurrentPlayer())) {
+						oponentWS = iWissensstreiter;
+						oponent = iWissensstreiter.getOwner();
+					} else {
+						playerWS = iWissensstreiter;
+						player = iWissensstreiter.getOwner();
+					}
 				}
 			}
+			IAPIFactory.factory.getWissenTestenInstance().setUp(player, oponent, playerWS, oponentWS);
 		} else {
 			gameModel.setState(GameState.DRAWN_NOT_OCCUPIED);
 		}
@@ -102,5 +112,5 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 	@Override
 	public void resetCountDicedInARow() {
 		countDicedInARow = 0;
-	}
+	}	
 }

@@ -79,4 +79,19 @@ public class Wissenstandsanzeiger implements IWissenstandsanzeiger {
 			i++;
 		}
 	}
+
+	@Override
+	public int getIndexForCategory(ICategory category) {
+		for (int i = 0; i < categories.length; i++) {
+			if(categories[i].equals(category)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	@Override
+	public int getIndexForCategroyByCateNo(int cateNo) {
+		return anzeiger[cateNo];
+	}
 }

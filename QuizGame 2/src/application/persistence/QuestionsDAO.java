@@ -1,7 +1,9 @@
 package application.persistence;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 import application.coreElements.Category;
@@ -9,9 +11,9 @@ import application.coreElements.Question;
 
 public class QuestionsDAO {
 	
-	public HashSet<Question> loadQuestions(Category category){
+	public List<Question> loadQuestions(Category category){
 		Scanner scanner = IFileLoader.fileLoader.loadCSVtoScanner("resources/" + category.getName() + ".csv");
-		HashSet<Question> result = new HashSet<Question>();
+		List<Question> result = new ArrayList<Question>();
 		while(scanner.hasNext()) {
 			String question = scanner.next();
 			String rightAnswer = scanner.next();

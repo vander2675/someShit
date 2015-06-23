@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
@@ -19,7 +20,12 @@ import javafx.scene.shape.Rectangle;
 import org.reactfx.util.FxTimer;
 import org.reactfx.util.Timer;
 
-public class QuizGameQuestionViewController implements Initializable, IPresentable {
+import application.api.IGameModel;
+import application.api.IObserver;
+import application.logic.IAPIFactory;
+import application.state.GameState;
+
+public class QuizGameQuestionViewController implements Initializable, IPresentable, IObserver<GameState> {
 
     @FXML
     private Rectangle answer1Rect;
@@ -80,8 +86,12 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     
     int indexOfRightAnswer = -1;
     
+    IGameModel gameModel;
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+    	gameModel = IAPIFactory.factory.getGameModel();
+    	gameModel.attach(this);
     	initReferenceCollections();
     	initClickHandlers();
     	
@@ -132,8 +142,9 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     }
     
     private void handleClickOnAnswerRect(Rectangle answerRect) {
-		boolean result = checkAnswerForClickedRectangle(answerRect);
-
+		boolean result = IAPIFactory.factory.getGameModel().getQuestion().isCorrectAnswer(gameModel.getQuestion().getAnswers()[answerRects.indexOf(answerRect)]);
+		System.out.println(result);
+		gameModel.chooseAnswer(gameModel.getQuestion().getAnswers()[answerRects.indexOf(answerRect)]);
 		answerRect.setFill((result) ? Color.LIGHTGREEN : Color.RED);
 
 		setupEndState();
@@ -145,6 +156,7 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
 			@Override
 			public void handle(MouseEvent t) {
 				dismiss();
+				IAPIFactory.factory.getGameModel().clickDone();
 			}
 		});
     }
@@ -177,13 +189,15 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
     		String text = "Zeit verbleibend: " + remainingTimeInMillis / 1000;
     		timeUpLabel.setText(text);
     	} else {
-    		timeUpLabel.setText("Zeit abgelaufen!");
-    		timeUpLabel.setTextFill(Color.RED);
     		
-    		// set all answer rects to red
-    		for (Rectangle rectangle : answerRects) {
-				rectangle.setFill(Color.RED);
-			}
+    		timeUpLabel.setText("Zeit abgelaufen!");
+    		IAPIFactory.factory.getGameModel().timeUp();
+//    		timeUpLabel.setTextFill(Color.RED);
+//    		
+//    		// set all answer rects to red
+//    		for (Rectangle rectangle : answerRects) {
+//				rectangle.setFill(Color.RED);
+//			}
     		
     		setupEndState();
     	}
@@ -201,5 +215,14 @@ public class QuizGameQuestionViewController implements Initializable, IPresentab
 
 	@Override
 	public boolean shouldPresenterViewYieldUserInteraction() { return true; }
+
+	@Override
+	public void update(GameState info) {
+
+		switch(info) {
+		case SHOW_ANSWER:
+			
+		}
+	}
 
 }
