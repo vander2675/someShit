@@ -132,7 +132,9 @@ public class Spielbrett implements ISpielbrett {
 
 	@Override
 	public void drawToHomeBaseFromOccupiedField(IWissensstreiter ws) {
-		getFieldOfWissensstreiter(ws).removeWissensstreiter(ws);
+		IField fieldOfWissensstreiter = getFieldOfWissensstreiter(ws);
+		System.out.println("fieldOfWissensstreiter: " + "\t" + fieldOfWissensstreiter + "ws:" + ws);
+		fieldOfWissensstreiter.removeWissensstreiter(ws);
 	}
 
 	@Override

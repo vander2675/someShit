@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import application.api.IField;
 import application.api.IGameModel;
 import application.api.IPlayer;
+import application.api.ISpielbrett;
 import application.api.IUseCaseZugDurchfuehren;
 import application.api.IWissensstreiter;
 import application.coreElements.Spielbrett;
@@ -25,6 +26,7 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 	@Override
 	public void throwDice() {
 		IGameModel gameModel = IAPIFactory.factory.getGameModel();
+		ISpielbrett gameBoard = IAPIFactory.factory.getSpielbrett();
 		numberDiced = IAPIFactory.factory.getDice().throwDice();
 		countDicedInARow++;
 		IPlayer currentPlayer = gameModel.getCurrentPlayer();
@@ -35,13 +37,12 @@ public class UseCaseZugDurchfuehren implements IUseCaseZugDurchfuehren{
 			
 			if(entry.getValue() == null && numberDiced != 6) {
 				drawable = false;
-			} else if (entry.getValue() == null && IAPIFactory.factory.getSpielbrett().getStartFieldByPlayer(currentPlayer).getWissensstreiter().size() > 0) {
+			} else if (entry.getValue() == null && gameBoard.getStartFieldByPlayer(currentPlayer).getWissensstreiter().size() > 0
+					&& gameBoard.getStartFieldByPlayer(currentPlayer).getWissensstreiter().get(0).getOwner().equals(currentPlayer)) {
 				drawable = false;
-			}
-			
-			else if(entry.getValue() != null) {
+			}else if(entry.getValue() != null) {
 				for (IWissensstreiter ws : entry.getValue().getWissensstreiter()) {
-					if (ws.equals(entry.getKey())) {
+					if (ws.getOwner().equals(entry.getKey().getOwner())) {
 						drawable = false;
 					}
 				}
