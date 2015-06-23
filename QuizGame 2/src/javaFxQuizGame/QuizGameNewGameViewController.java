@@ -140,8 +140,8 @@ public class QuizGameNewGameViewController implements Initializable, IPresentabl
 	}
 	
 	private void setupColorTextBoxes() {
-		colors = Arrays.asList(new Paint[] {Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE});
-		colorStrings = FXCollections.observableArrayList(Arrays.asList(new String[] {"RED", "BLUE", "GREEN", "ORANGE"}));
+		colors = Arrays.asList(new Paint[] {Color.WHITE, Color.web("#F66809"), Color.web("#B435FF"), Color.web("#00FF22")});
+		colorStrings = FXCollections.observableArrayList(Arrays.asList(new String[] {"WHITE", "ORANGE", "PURPLE", "GREEN"}));
 		
 		for (ComboBox<String> comboBox : comboBoxes) {
 			comboBox.setItems(colorStrings);
